@@ -9,6 +9,7 @@
 const http = require("http");
 // importing url module
 const url = require("url");
+const { readFile, appendFile, open, writeFile } = require("./fileSystem");
 
 const PORT = 8080;
 
@@ -25,13 +26,24 @@ const server = http.createServer((req, res) => {
       break;
     }
 
-    case "/about": {
-      res.write("this is about page");
+    case "/fs/readfile": {
+      readFile(req, res);
       break;
     }
 
-    case "/services": {
-      res.write("this is services page");
+    case "/fs/appendfile": {
+      appendFile(req, res, "append file");
+      break;
+    }
+
+    case "/fs/writefile": {
+      writeFile(req, res, "write file");
+      break;
+    }
+
+    case "/fs/open": {
+      open(req, res);
+      break;
     }
 
     default:
